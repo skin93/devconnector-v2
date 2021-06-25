@@ -4,7 +4,13 @@ import morgan from 'morgan';
 import colors from 'colors';
 import dotenv from 'dotenv';
 
+import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
+
+import connectDB from './config/db.js';
+
 dotenv.config();
+
+connectDB();
 
 const app = express();
 
@@ -14,9 +20,15 @@ if (environment === 'development') {
   app.use(morgan('dev'));
 }
 
-const PORT = process.env.PORT || 5000;
+app.use(express.json());
 
 app.get('/', (req, res) => res.send('Hello World!'));
+
+app.use(notFound);
+
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () =>
   console.log(`App running on port ${PORT} in ${environment} mode`.yellow.bold)
