@@ -9,6 +9,7 @@ import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
 import connectDB from './config/db.js';
 
 import userRoutes from './routes/userRoutes.js';
+import profileRoutes from './routes/profileRoutes.js';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ if (environment === 'development') {
 }
 
 app.use('/api/users', userRoutes);
+app.use('/api/profile', profileRoutes);
 
 app.use(notFound);
 
