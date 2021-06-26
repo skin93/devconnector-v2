@@ -5,8 +5,19 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
+
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyle />
     <Provider store={store}>
       <App />
     </Provider>
