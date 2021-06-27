@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/GlobalStyle';
 import showcaseImg from '../../img/showcase.jpg';
 import { Link } from 'react-router-dom';
 
@@ -44,7 +43,7 @@ export const ButtonsWrapper = styled.div`
 
 export const RegisterButton = styled(Link)`
   display: inline-block;
-  background: ${colors.primaryColor};
+  background: ${({ theme }) => theme.colors.primaryColor};
   color: #fff;
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
@@ -56,6 +55,6 @@ export const RegisterButton = styled(Link)`
 `;
 
 export const LoginButton = styled(RegisterButton)`
-  background: ${colors.lightColor};
+  background: ${({ theme }) => theme.colors.lightColor};
   color: #333;
 `;

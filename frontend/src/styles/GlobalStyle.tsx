@@ -31,6 +31,8 @@ export const margins = {
   my3: '3rem 0',
 };
 
+export const theme = { colors, paddings, margins };
+
 export const Container = styled.div`
   max-width: 1100px;
   margin: auto;
@@ -54,7 +56,7 @@ body {
 }
 
 a {
-  color: var(--primary-color);
+  color: ${colors.primaryColor};
   text-decoration: none;
 }
 

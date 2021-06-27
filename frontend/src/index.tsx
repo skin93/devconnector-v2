@@ -5,14 +5,18 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
-import { GlobalStyle } from './styles/GlobalStyle';
+import { GlobalStyle, theme } from './styles/GlobalStyle';
+import {ThemeProvider} from 'styled-components'
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
+    <ThemeProvider theme={theme}>
     <Provider store={store}>
       <App />
+      
     </Provider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
