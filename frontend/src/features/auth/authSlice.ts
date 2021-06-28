@@ -4,7 +4,7 @@ import { RootState } from '../../app/store';
 import { UserType } from '../../types/UserType';
 import { FormDataType } from '../../types/FormDataType';
 import setAuthToken from '../../utils/setAuthtoken';
-import { fetchUser } from './authApi';
+import { fetchUser, loginUser, registerUser } from './authApi';
 
 export type AuthStateType = {
   token: string | null;
@@ -24,41 +24,20 @@ export const loadUser = createAsyncThunk('auth/loadUser', async () => {
   if (localStorage.getItem('token'))
     setAuthToken(localStorage.getItem('token'));
 
-  const res = await fetchUser();
-  return res.data;
+  return await fetchUser();
 });
 
 export const register = createAsyncThunk(
   'auth/register',
   async ({ name, email, password }: FormDataType) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const body = JSON.stringify({ name, email, password });
-
-    const res = await axios.post('/api/users', body, config);
-
-    return res.data;
+    return await registerUser(name!, email, password);
   }
 );
 
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }: FormDataType) => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const body = JSON.stringify({ email, password });
-
-    const res = await axios.post('/api/users/login', body, config);
-
-    return res.data;
+    return await loginUser(email, password);
   }
 );
 

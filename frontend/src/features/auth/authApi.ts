@@ -2,5 +2,37 @@ import axios from 'axios';
 
 export const fetchUser = async () => {
   const res = await axios.get('/api/auth');
-  return res;
+  return res.data;
+};
+
+export const registerUser = async (
+  name: string,
+  email: string,
+  password: string
+) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ name, email, password });
+
+  const res = await axios.post('/api/users', body, config);
+
+  return res.data;
+};
+
+export const loginUser = async (email: string, password: string) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ email, password });
+
+  const res = await axios.post('/api/users/login', body, config);
+
+  return res.data;
 };
