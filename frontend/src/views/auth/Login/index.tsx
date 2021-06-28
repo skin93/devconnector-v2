@@ -1,22 +1,34 @@
 import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { IFormData } from '../../../interfaces/IFormData';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+
+import { Link, Redirect } from 'react-router-dom';
+import { FormDataType } from '../../../types/FormDataType';
 import * as F from '../../../components/shared/Form/Form.style.';
 
 import { FaUser } from 'react-icons/fa';
+import { login, authState } from '../../../features/auth/authSlice';
 
 const Login = () => {
-  const [formData, setFormData] = useState<IFormData>({} as IFormData);
+  const dispatch = useAppDispatch();
+  const { isAuthenticated } = useAppSelector(authState);
+  const [formData, setFormData] = useState<FormDataType>({
+    email: '',
+    password: '',
+  });
 
-  const {  email, password} = formData;
+  const { email, password } = formData;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Button clicked');
+    dispatch(login({ email, password }));
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <Fragment>
       <F.FormHeading>Sign In</F.FormHeading>
@@ -50,7 +62,7 @@ const Login = () => {
         <F.InputSubmit type='submit'>Login</F.InputSubmit>
       </F.Form>
       <F.FormParagraph>
-       Don't have an account? <Link to='/register'>Sign Up</Link>
+        Don't have an account? <Link to='/register'>Sign Up</Link>
       </F.FormParagraph>
     </Fragment>
   );

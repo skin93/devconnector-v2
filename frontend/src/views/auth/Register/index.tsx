@@ -1,22 +1,41 @@
 import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { IFormData } from '../../../interfaces/IFormData';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+
+import { Link, Redirect } from 'react-router-dom';
+import { FormDataType } from '../../../types/FormDataType';
 import * as F from '../../../components/shared/Form/Form.style.';
 
 import { FaUser } from 'react-icons/fa';
+import { register, authState } from '../../../features/auth/authSlice';
+import { setAlert } from '../../../features/alert/alertSlice';
 
 const Register = () => {
-  const [formData, setFormData] = useState<IFormData>({} as IFormData);
+  const dispatch = useAppDispatch();
+  const { isAuthenticated } = useAppSelector(authState);
+  const [formData, setFormData] = useState<FormDataType>({
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+  });
 
   const { name, email, password, password2 } = formData;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Button clicked');
+    if (password !== password2) {
+      dispatch(setAlert({ msg: 'Password do not match', alertType: 'danger' }));
+    } else {
+      dispatch(register({ name, email, password }));
+    }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <Fragment>
       <F.FormHeading>Sign Up</F.FormHeading>
