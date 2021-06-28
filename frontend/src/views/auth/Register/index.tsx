@@ -7,7 +7,7 @@ import * as F from '../../../components/shared/Form/Form.style.';
 
 import { FaUser } from 'react-icons/fa';
 import { register, authState } from '../../../features/auth/authSlice';
-import { setAlert } from '../../../features/alert/alertSlice';
+import { setAlert, removeAlert } from '../../../features/alert/alertSlice';
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -28,6 +28,9 @@ const Register = () => {
     e.preventDefault();
     if (password !== password2) {
       dispatch(setAlert({ msg: 'Password do not match', alertType: 'danger' }));
+      setTimeout(() => {
+        dispatch(removeAlert());
+      }, 3000);
     } else {
       dispatch(register({ name, email, password }));
     }
