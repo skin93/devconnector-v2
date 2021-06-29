@@ -11,6 +11,7 @@ import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import postRoutes from './routes/postRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ if (environment === 'development') {
 app.use('/api/users', userRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/auth', authRoutes);
 
 app.use(notFound);
 
