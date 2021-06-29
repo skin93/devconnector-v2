@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { UserType } from '../../types/UserType';
 import { FormDataType } from '../../types/FormDataType';
@@ -57,7 +57,7 @@ export const authSlice = createSlice({
       .addCase(loadUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(loadUser.fulfilled, (state, action: PayloadAction<UserType>) => {
+      .addCase(loadUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
       })

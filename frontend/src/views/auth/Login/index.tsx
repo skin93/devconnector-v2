@@ -6,7 +6,7 @@ import { FormDataType } from '../../../types/FormDataType';
 import * as F from '../../../components/shared/Form/Form.style.';
 
 import { FaUser } from 'react-icons/fa';
-import { login, authState } from '../../../features/auth/authSlice';
+import { login, loadUser, authState } from '../../../features/auth/authSlice';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,8 @@ const Login = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    await dispatch(login({ email, password }));
+    await dispatch(loadUser());
   };
 
   if (isAuthenticated) {

@@ -6,7 +6,11 @@ import { FormDataType } from '../../../types/FormDataType';
 import * as F from '../../../components/shared/Form/Form.style.';
 
 import { FaUser } from 'react-icons/fa';
-import { register, authState } from '../../../features/auth/authSlice';
+import {
+  register,
+  loadUser,
+  authState,
+} from '../../../features/auth/authSlice';
 import { setAlert, removeAlert } from '../../../features/alert/alertSlice';
 
 const Register = () => {
@@ -32,7 +36,8 @@ const Register = () => {
         dispatch(removeAlert());
       }, 3000);
     } else {
-      dispatch(register({ name, email, password }));
+      await dispatch(register({ name, email, password }));
+      await dispatch(loadUser());
     }
   };
 
