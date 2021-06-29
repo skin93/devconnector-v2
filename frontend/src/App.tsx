@@ -11,6 +11,8 @@ import Login from './views/auth/Login';
 import Dashboard from './views/Dashboard';
 
 import Alert from './features/alert/Alert';
+import PrivateRoute from './components/PrivateRoute';
+import NotFound from './views/NotFound';
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
           <Switch>
             <Route path='/register' exact component={Register} />
             <Route path='/login' exact component={Login} />
-            <Route path='/dashboard' exact component={Dashboard} />
+            <PrivateRoute path='/dashboard' exact component={Dashboard} />
+            <Route component={NotFound} />
           </Switch>
         </Container>
       </main>
