@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/GlobalStyle';
+import { palette } from '../../styles/GlobalStyle';
 
 export const Alert = styled.div`
   padding: 0.8rem;
@@ -8,17 +8,17 @@ export const Alert = styled.div`
   ${(props) => {
     switch (props.theme) {
       case 'primary':
-        return `background: ${colors.primaryColor}; color: #fff;`;
+        return `background: ${palette.primary.background}; color: ${palette.primary.color};`;
       case 'dark':
-        return `background: ${colors.darkColor}; color: #fff;`;
+        return `background: ${palette.dark.background}; color: ${palette.dark.color};`;
       case 'danger':
-        return `background: ${colors.dangerColor}; color: #fff;`;
+        return `background: ${palette.danger.background}; color: ${palette.danger.color};`;
       case 'success':
-        return `background: ${colors.successColor}; color: #fff;`;
+        return `background: ${palette.success.background}; color: ${palette.success.color};`;
       case 'white':
-        return `background: #fff; color: #333; border: #ccc solid 1px;`;
+        return `background: ${palette.white.background}; color: ${palette.white.color}; border: ${palette.white.border};`;
       default:
-        return `background: ${colors.lightColor}; color: #333;`;
+        return `background: ${palette.light.background}; color: ${palette.light.color};`;
     }
   }}
 `;

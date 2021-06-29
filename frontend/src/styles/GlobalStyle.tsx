@@ -31,13 +31,47 @@ export const margins = {
   my3: '3rem 0',
 };
 
-export const theme = { colors, paddings, margins };
+export const palette = {
+  primary: {
+    background: `${colors.primaryColor}`,
+    color: '#fff',
+  },
+  light: {
+    background: `${colors.lightColor}`,
+    color: '#333',
+  },
+  dark: {
+    background: `${colors.darkColor}`,
+    color: '#fff',
+  },
+  danger: {
+    background: `${colors.dangerColor}`,
+    color: '#fff',
+  },
+  success: {
+    background: `${colors.successColor}`,
+    color: '#fff',
+  },
+  white: {
+    background: '#fff',
+    color: '#333',
+    border: '#ccc solid 1px',
+  },
+};
+
+export const theme = { colors, paddings, margins, palette };
 
 export const Container = styled.div`
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+
+  @media (max-width: 700px) {
+    margin-top: 8rem;
+  }
 `;
 
 export const GlobalStyle = createGlobalStyle`
