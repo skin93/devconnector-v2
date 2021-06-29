@@ -1,7 +1,8 @@
-import { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Container } from './styles/GlobalStyle';
+
+import Navbar from './components/Layout/Navbar';
 
 import Landing from './views/Landing';
 
@@ -14,8 +15,9 @@ import Alert from './features/alert/Alert';
 function App() {
   return (
     <Router>
-      <Fragment>
-        <Route path='/' exact component={Landing} />
+      <Navbar />
+      <Route path='/' exact component={Landing} />
+      <main>
         <Container>
           <Alert />
           <Switch>
@@ -24,7 +26,7 @@ function App() {
             <Route path='/dashboard' exact component={Dashboard} />
           </Switch>
         </Container>
-      </Fragment>
+      </main>
     </Router>
   );
 }
