@@ -59,7 +59,33 @@ export const palette = {
   },
 };
 
-export const theme = { colors, paddings, margins, palette };
+export const texts = {
+  xLarge: {
+    fontSize: '4rem',
+    lineHeight: 1.2,
+    marginBottom: '1rem',
+  },
+  large: {
+    fontSize: '3rem',
+    lineHeight: 1.2,
+    marginBottom: '1rem',
+  },
+  lead: {
+    fontSize: '1.5rem',
+    marginBottom: '1rem',
+  },
+  textCenter: {
+    textAlign: 'center',
+  },
+  textPrimary: {
+    color: `${colors.primaryColor}`,
+  },
+  textDark: {
+    color: `${colors.darkColor}`,
+  },
+};
+
+export const theme = { colors, paddings, margins, palette, texts };
 
 export const Container = styled.div`
   max-width: 1100px;
