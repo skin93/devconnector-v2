@@ -17,11 +17,11 @@ const profileSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      required: true,
+      required: [true, 'Please add a status'],
     },
     skills: {
       type: [String],
-      required: true,
+      required: [true, 'Please add some skills'],
     },
     bio: {
       type: String,
@@ -33,18 +33,18 @@ const profileSchema = mongoose.Schema(
       {
         title: {
           type: String,
-          required: true,
+          required: [true, 'Please ad an experience title'],
         },
         company: {
           type: String,
-          required: true,
+          required: [true, 'Please add a company name'],
         },
         location: {
           type: String,
         },
         from: {
           type: Date,
-          required: true,
+          required: [true, 'Please add a date from'],
         },
         to: {
           type: Date,
@@ -62,19 +62,19 @@ const profileSchema = mongoose.Schema(
       {
         school: {
           type: String,
-          required: true,
+          required: [true, 'Please add a school name'],
         },
         degree: {
           type: String,
-          required: true,
+          required: [true, 'Please add a degree'],
         },
         fieldofstudy: {
           type: String,
-          required: true,
+          required: [true, 'Please add a field of study'],
         },
         from: {
           type: Date,
-          required: true,
+          required: [true, 'Please add a date from'],
         },
         to: {
           type: Date,

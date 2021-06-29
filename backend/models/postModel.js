@@ -8,7 +8,7 @@ const postSchema = mongoose.Schema(
     },
     text: {
       type: String,
-      required: true,
+      required: [true, "Please add a text"],
     },
     name: {
       type: String,
@@ -32,7 +32,7 @@ const postSchema = mongoose.Schema(
         },
         text: {
           type: String,
-          required: true,
+          required: [true, "Please add a comment"],
         },
         name: {
           type: String,
