@@ -14,6 +14,11 @@ export const Button = styled.button`
 `;
 
 export const ButtonPrimary = styled(Button)`
-  background: ${({ theme }) => theme.colors.primaryColor};
-  color: #fff;
+  background: ${({ theme }) => theme.palette.primary.background};
+  color: ${({ theme }) => theme.palette.primary.color};
+`;
+
+export const ButtonDanger = styled(Button)`
+  background: ${({ theme }) => theme.palette.danger.background};
+  color: ${({ theme }) => theme.palette.danger.color};
 `;
