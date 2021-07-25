@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 
 import { Link, Redirect } from 'react-router-dom';
@@ -12,6 +12,8 @@ import {
   authState,
 } from '../../../features/auth/authSlice';
 import { setAlert, removeAlert } from '../../../features/alert/alertSlice';
+
+import { Container } from '../../../styles/GlobalStyle';
 
 const Register = () => {
   const dispatch = useAppDispatch();
@@ -45,7 +47,7 @@ const Register = () => {
     return <Redirect to='/dashboard' />;
   }
   return (
-    <Fragment>
+    <Container>
       <F.FormHeading>Sign Up</F.FormHeading>
       <F.FormLead>
         <FaUser /> Create Your Account
@@ -98,7 +100,7 @@ const Register = () => {
       <F.FormParagraph>
         Already have an account? <Link to='/login'>Sign In</Link>
       </F.FormParagraph>
-    </Fragment>
+    </Container>
   );
 };
 

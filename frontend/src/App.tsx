@@ -1,7 +1,4 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import { Container } from './styles/GlobalStyle';
-
 import Navbar from './components/Layout/Navbar';
 
 import Landing from './views/Landing';
@@ -18,17 +15,15 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Route path='/' exact component={Landing} />
       <main>
-        <Container>
-          <Alert />
-          <Switch>
-            <Route path='/register' exact component={Register} />
-            <Route path='/login' exact component={Login} />
-            <PrivateRoute path='/dashboard' exact component={Dashboard} />
-            <Route component={NotFound} />
-          </Switch>
-        </Container>
+        <Alert />
+        <Switch>
+          <Route path='/' exact component={Landing} />
+          <Route path='/register' exact component={Register} />
+          <Route path='/login' exact component={Login} />
+          <PrivateRoute path='/dashboard' exact component={Dashboard} />
+          <Route component={NotFound} />
+        </Switch>
       </main>
     </Router>
   );
