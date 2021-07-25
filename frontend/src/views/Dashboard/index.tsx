@@ -1,13 +1,18 @@
 import { Fragment, useEffect } from 'react';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { authState } from '../../features/auth/authSlice';
+import { authState, deleteAccount } from '../../features/auth/authSlice';
 import {
   getCurrentProfile,
   profileState,
+  clearProfile,
+  deleteProfile,
 } from '../../features/profile/profileSlice';
 
-import { FaUser } from 'react-icons/fa';
+import { Container } from '../../styles/GlobalStyle';
+
+import { FaUser, FaUserMinus } from 'react-icons/fa';
 
 import * as D from './Dashboard.style';
 
@@ -20,8 +25,14 @@ const Dashboard = () => {
     dispatch(getCurrentProfile());
   }, [dispatch]);
 
+  const handleClick = () => {
+    dispatch(deleteProfile());
+    dispatch(clearProfile());
+    dispatch(deleteAccount());
+  };
+
   return (
-    <Fragment>
+    <Container>
       <D.Heading>Dashboard</D.Heading>
       <D.Lead>
         <FaUser /> Welcome {user && user.name}
@@ -32,11 +43,11 @@ const Dashboard = () => {
           <Experience experience={profile.experience} />
           <Education education={profile.education} /> */}
 
-          {/* <div className='my-2'>
-            <button className='btn btn-danger' onClick={() => deleteAccount()}>
-              <i className='fas fa-user-minus' /> Delete My Account
-            </button>
-          </div> */}
+          <D.Wrapper>
+            <D.DeleteButton onClick={handleClick}>
+              <FaUserMinus /> Delete My Account
+            </D.DeleteButton>
+          </D.Wrapper>
         </Fragment>
       ) : (
         <Fragment>
@@ -44,7 +55,7 @@ const Dashboard = () => {
           <D.CreateButton to='/create-profile'>Create Profile</D.CreateButton>
         </Fragment>
       )}
-    </Fragment>
+    </Container>
   );
 };
 

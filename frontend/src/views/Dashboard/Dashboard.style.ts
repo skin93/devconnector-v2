@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ButtonDanger } from '../../components/shared/Button/Button.style.';
 
 export const Heading = styled.h1`
   ${({ theme }) => theme.texts.large}
@@ -8,6 +9,10 @@ export const Heading = styled.h1`
 
 export const Lead = styled.p`
   ${({ theme }) => theme.texts.lead}
+`;
+
+export const Wrapper = styled.div`
+  ${({ theme }) => theme.margins.my2}
 `;
 
 export const CreateButton = styled(Link)`
@@ -22,3 +27,5 @@ export const CreateButton = styled(Link)`
   transition: opacity 0.2s ease-in;
   outline: none;
 `;
+
+export const DeleteButton = styled(ButtonDanger)``;
